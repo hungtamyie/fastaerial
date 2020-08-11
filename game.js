@@ -19,12 +19,16 @@ var secondJump = -1;
 var dodgeDeadzone = 0.5;
 var maxDifference = 10000;
 var hasPlayedSound = false;
+var jumpReleased = false;
 var jumpButton = 0;
 function tick(){
     ctx.clearRect(0,0,canvas.width, canvas.height);
     var gp = navigator.getGamepads()[0];
     if (gameState == "none") {
-        if (gp.buttons[jumpButton].pressed) {
+        if (!gp.buttons[jumpButton].pressed){
+            jumpReleased = true;
+        }
+        if (gp.buttons[jumpButton].pressed && jumpReleased) {
             gameState = "midJump";
             stickPos = [];
             jumpRelease = -1;
@@ -80,6 +84,7 @@ function tick(){
         
         if (percentTime > 1) {
             gameState = "none";
+            jumpReleased = false;
         }
         
         ctx.fillStyle = "white";
