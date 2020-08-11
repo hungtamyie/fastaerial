@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+        <style>
+            canvas {
+                border: 2px solid black;
+                background: black;
+            }
+            body {
+                margin-left: 150px;
+            }
+        </style>
+    </head>
+    <body>
+    <h1>Fast Aerial Tool</h1>
+    <button onclick="toggleTips()">Hide/show tips</button>
+    <div id="tips">
+    <p>Use this to perfect your fast aerials. For you silvers out there who don't know how to fast aerial, it goes like this.
+    <ul>
+        <li>Pull the thumbstick all the way down</li>
+        <li>Jump and hold boost.</li>
+        <li>Release the thumbstick and jump again.</li>
+        <li>Pull the thumbstick down again</li>
+    </ul>
+    Some tips:
+    <ul>
+        <li>Hold your first jump for as long as possible</li>
+        <li>Hit your second jump exactly 240 milliseconds after the first. The timing is marked by a chirp and the purple lines.</li>
+        <li>Make sure you start the move with the thumbstick pulled down and try to release it at the last second. <br>The faster you lean back, the faster your boost can propell you upward instead of forward</li>
+        <li>If your brain is too smooth to figure out how to work on the thumbstick and the jump button at the same time, just figure out the timing of the jump button first.</li>
+    </ul>
+    <br>A good fast aerial look something like
+    <a href="https://i.imgur.com/JaFbQCZ.png" target="_blank">this</a>
+    
+    <br>
+    And if you really want to perfect the move, try this training pack. 4C51-7A7E-4C24-8464 You'll realize how slow you used to be. <br>
+    <br>Honestly I'm kinda scared to level out the playing field like this. If this gets big enough I can imagine a world where I get absolutley dusted by some plat 3. <br>But knowledge needs to be shared, right? :) 
+    <br>
+    <br>
+    Good luck losers!
+    </p>
+    </div>
+    <br>
+    <canvas id="canvas" width="900px" height="300px"></canvas>
+ 
+    <script src="./gamepad.js"></script>
+    <script src="./game.js"></script>
+    <br>
+    <input type="range" min="0" max="100" value="50" class="slider" id="myRange">
+    <p>Dodge deadzone: <span id="demo"></span></p>
+    <script>
+    var slider = document.getElementById("myRange");
+    var output = document.getElementById("demo");
+    output.innerHTML = "0." + slider.value;
+    
+    slider.oninput = function() {
+      output.innerHTML = "0." + this.value;
+    }
+    </script>
+    <button id="rebind" onclick="if(gameState == 'none'){gameState = 'assignJump'; $('#rebindmsg').html('Click any button')}">Rebind jump key</button>
+    <div id="rebindmsg"></div>
+    <br>
+    <span> Volume</span><br>
+    <input type="range" min="0" max="100" value="50" class="slider" id="sound">
+    </body>
+</html>
